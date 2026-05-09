@@ -1,6 +1,7 @@
 import express from "express";
 import { ManagerController } from "./manager.controller";
 
+import { multerUpload } from "../../config/multer.config";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
 import {
@@ -14,6 +15,7 @@ const router = express.Router();
 router.post(
   "/create-manager",
   checkAuth("admin"),
+  multerUpload.array("files"),
   validateRequest(createManagerZodSchema),
   ManagerController.createManager,
 );
@@ -28,6 +30,7 @@ router.get("/manager/:id", ManagerController.getSingleManager);
 router.patch(
   "/update-manager/:id",
   checkAuth("admin"),
+  multerUpload.array("files"),
   validateRequest(updateManagerZodSchema),
   ManagerController.updateManager,
 );
@@ -36,6 +39,7 @@ router.patch(
 router.delete(
   "/delete-manager/:id",
   checkAuth("admin"),
+  multerUpload.array("files"),
   ManagerController.deleteManager,
 );
 

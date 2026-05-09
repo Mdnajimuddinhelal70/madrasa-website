@@ -3,10 +3,15 @@ import httpStatus from "http-status";
 
 import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
+import { IManager } from "./manager.interface";
 import { ManagerService } from "./manager.service";
 
 const createManager = catchAsync(async (req: Request, res: Response) => {
-  const result = await ManagerService.createManager(req.body);
+  const payload: IManager = {
+    ...req.body,
+    picture: (req.files as Express.Multer.File[]).map((file) => file.path),
+  };
+  const result = await ManagerService.createManager(payload);
 
   sendResponse(res, {
     success: true,
@@ -43,7 +48,11 @@ const getSingleManager = catchAsync(async (req: Request, res: Response) => {
 const updateManager = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params as any;
 
-  const result = await ManagerService.updateManager(id, req.body);
+  const payload: IManager = {
+    ...req.body,
+    picture: (req.files as Express.Multer.File[]).map((file) => file.path),
+  };
+  const result = await ManagerService.updateManager(id, payload);
 
   sendResponse(res, {
     success: true,
@@ -55,9 +64,7 @@ const updateManager = catchAsync(async (req: Request, res: Response) => {
 
 const deleteManager = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params as any;
-
   await ManagerService.deleteManager(id);
-
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
