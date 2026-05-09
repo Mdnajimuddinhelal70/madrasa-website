@@ -7,27 +7,17 @@ export const createTeacherZodSchema = z.object({
 
   fatherName: z.string().optional(),
   motherName: z.string().optional(),
-
   village: z.string().optional(),
   postOffice: z.string().optional(),
   thana: z.string().optional(),
   district: z.string().optional(),
-
   phone: z.string().optional(),
-
   email: z.string().email().optional(),
-
-  picture: z.string().optional(),
-
   education: z.array(z.string()).optional(),
-
   startYear: z.number().optional(),
   endYear: z.number().optional(),
-
   currentPosition: z.string().optional(),
   previousPositions: z.array(z.string()).optional(),
-
   biography: z.string().optional(),
-
   isActive: z.boolean().optional(),
 });

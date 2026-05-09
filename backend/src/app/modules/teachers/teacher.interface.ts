@@ -12,7 +12,7 @@ export interface ITeacher {
 
   phone?: string;
   email?: string;
-  picture?: string;
+  picture?: string[];
 
   education?: string[];
 

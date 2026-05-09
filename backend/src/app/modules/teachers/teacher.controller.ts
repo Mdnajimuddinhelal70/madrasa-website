@@ -2,10 +2,15 @@ import type { Request, Response } from "express";
 import httpStatus from "http-status";
 import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
+import { ITeacher } from "./teacher.interface";
 import { TeacherService } from "./teacher.service";
 
 const createTeacher = catchAsync(async (req: Request, res: Response) => {
-  const result = await TeacherService.createTeacher(req.body);
+  const payload: ITeacher = {
+    ...req.body,
+    picture: (req.files as Express.Multer.File[]).map((file) => file.path),
+  };
+  const result = await TeacherService.createTeacher(payload);
 
   sendResponse(res, {
     success: true,
@@ -42,7 +47,11 @@ const getSingleTeacher = catchAsync(async (req: Request, res: Response) => {
 const updateTeacher = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params as any;
 
-  const result = await TeacherService.updateTeacher(id, req.body);
+  const payload: ITeacher = {
+    ...req.body,
+    picture: (req.files as Express.Multer.File[]).map((file) => file.path),
+  };
+  const result = await TeacherService.updateTeacher(id, payload);
 
   sendResponse(res, {
     success: true,

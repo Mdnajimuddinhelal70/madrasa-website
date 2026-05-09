@@ -12,7 +12,7 @@ const teacherSchema = new Schema<ITeacher>(
     district: { type: String, trim: true },
     phone: { type: String, trim: true },
     email: { type: String, unique: true, lowercase: true, trim: true },
-    picture: { type: String, default: "" },
+    picture: { type: [String], default: [] },
     education: { type: [String], default: [] },
     startYear: { type: Number, min: 1900 },
     endYear: { type: Number },
