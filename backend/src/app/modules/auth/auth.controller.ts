@@ -35,7 +35,18 @@ const loginAdmin = catchAsync(async (req: Request, res: Response) => {
 //     data: null,
 //   });
 // });
+const getMe = catchAsync(async (req: Request, res: Response) => {
+  const user = req.user;
+  console.log("User from get me", user);
+  sendResponse(res, {
+    success: true,
+    statusCode: 200,
+    message: "User fetched successfully",
+    data: user,
+  });
+});
 
 export const AuthController = {
   loginAdmin,
+  getMe,
 };

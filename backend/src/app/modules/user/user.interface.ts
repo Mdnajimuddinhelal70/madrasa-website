@@ -6,12 +6,6 @@ export enum Role {
   USER = "USER",
 }
 
-//auth providers
-/**
- * email, password
- * google authentication
- */
-
 export enum IsActive {
   ACTIVE = "ACTIVE",
   INACTIVE = "INACTIVE",
@@ -23,7 +17,7 @@ export interface IUser {
   name: string;
   email: string;
   password?: string;
-  picture?: string;
+  picture?: string[];
   address?: string;
   isDeleted?: string;
   isActive?: IsActive;

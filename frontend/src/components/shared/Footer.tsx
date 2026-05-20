@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaFacebook } from "react-icons/fa";
 export default function Footer() {
   return (
-    <footer className="bg-green-900 text-white mt-16">
+    <footer className="bg-[#2c0202] text-white mt-16">
       <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-3 gap-10">
         {/* 1. About */}
         <div>

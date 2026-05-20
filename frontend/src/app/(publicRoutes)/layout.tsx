@@ -8,7 +8,6 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       <main>{children}</main>
       <Footer />
-      {/* <footer className="text-center p-4 bg-gray-100">© Madrasa</footer> */}
     </>
   );
 };

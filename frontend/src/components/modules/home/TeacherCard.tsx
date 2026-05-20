@@ -1,44 +1,53 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// components/TeacherCard.tsx
+
 "use client";
 
-import { Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import Image from "next/image";
 import { FaFacebookSquare } from "react-icons/fa";
-import teacher1 from "../../../../public/assets/images/teachers/teacher1.png";
 
-export default function TeacherCard() {
+export default function TeacherCard({ teacher }: any) {
   return (
-    <div className="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
-      {/* Image */}
-      <div className="relative h-64 w-full overflow-hidden">
-        <Image
-          src={teacher1}
-          alt="Teacher"
-          fill
-          className="object-cover group-hover:scale-110 transition duration-300"
-        />
+    <div className="group relative w-full font-serif">
+      <div className="relative overflow-hidden rounded-[20px] bg-[#2c0202] shadow-md hover:shadow-xl transition">
+        <div className="relative h-[240px] w-full overflow-hidden rounded-t-[120px]">
+          <Image
+            src={teacher.picture}
+            alt={teacher.name}
+            fill
+            className="object-cover group-hover:scale-110 transition"
+          />
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition"></div>
-      </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1f3a2b]/70 to-transparent" />
 
-      {/* Content */}
-      <div className="p-5 text-center">
-        <h3 className="text-xl font-bold text-gray-800">Maulana Abdul Karim</h3>
+          <div className="absolute bottom-4 left-4 right-4">
+            <div className="bg-[#2c0202]/95 p-2 rounded-lg border border-[#c9a14a]/40">
+              <h3 className="text-sm font-bold text-white">{teacher.name}</h3>
+              <p className="text-[10px] text-white">{teacher.subject}</p>
+            </div>
+          </div>
+        </div>
 
-        <p className="text-green-700 font-medium mb-2">Islamic Scholar</p>
+        <div className="p-4">
+          <p className="text-xs text-white italic">
+            Experienced teacher in {teacher.subject}.
+          </p>
 
-        <p className="text-gray-500 text-sm mb-4">
-          Expert in Tafsir and Hadith with 10+ years experience.
-        </p>
+          <div className="mt-4 flex justify-between items-center">
+            <div className="flex gap-2">
+              <div className="h-8 w-8 flex items-center justify-center rounded-full bg-[#1f3a2b] text-white">
+                <FaFacebookSquare size={14} />
+              </div>
+              <div className="h-8 w-8 flex items-center justify-center rounded-full bg-[#1f3a2b] text-white">
+                <Mail size={14} />
+              </div>
+            </div>
 
-        {/* Social Icons */}
-        <div className="flex justify-center gap-4">
-          <a href="#" className="text-gray-500 hover:text-green-700 transition">
-            <FaFacebookSquare size={18} />
-          </a>
-          <a href="#" className="text-gray-500 hover:text-green-700 transition">
-            <Mail size={18} />
-          </a>
+            <button className="flex items-center gap-1 text-[10px] px-3 py-1 rounded-full border border-[#1f3a2b] text-[#10df2c] hover:bg-[#1f3a2b] hover:text-white transition">
+              View <ArrowUpRight size={12} />
+            </button>
+          </div>
         </div>
       </div>
     </div>

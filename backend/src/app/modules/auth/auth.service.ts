@@ -4,6 +4,9 @@ import AppError from "../../errorHelpers/AppError";
 import { generateToken } from "../../utils/jwt";
 
 const loginAdmin = async (payload: { email: string; password: string }) => {
+  if (!payload) {
+    throw new AppError(httpStatus.BAD_REQUEST, "Payload missing");
+  }
   const { email, password } = payload;
 
   // check email

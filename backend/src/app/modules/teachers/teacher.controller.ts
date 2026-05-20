@@ -8,7 +8,7 @@ import { TeacherService } from "./teacher.service";
 const createTeacher = catchAsync(async (req: Request, res: Response) => {
   const payload: ITeacher = {
     ...req.body,
-    picture: (req.files as Express.Multer.File[]).map((file) => file.path),
+    picture: ((req.files as Express.Multer.File[]) ?? []).map((f) => f.path),
   };
   const result = await TeacherService.createTeacher(payload);
 
@@ -49,7 +49,7 @@ const updateTeacher = catchAsync(async (req: Request, res: Response) => {
 
   const payload: ITeacher = {
     ...req.body,
-    picture: (req.files as Express.Multer.File[]).map((file) => file.path),
+    picture: ((req.files as Express.Multer.File[]) ?? []).map((f) => f.path),
   };
   const result = await TeacherService.updateTeacher(id, payload);
 

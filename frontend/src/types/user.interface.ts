@@ -1,0 +1,29 @@
+export interface ITeacher {
+  _id?: string;
+  name: string;
+  fatherName?: string;
+  motherName?: string;
+  village?: string;
+  postOffice?: string;
+  thana?: string;
+  district?: string;
+  phone?: string;
+  email?: string;
+  picture?: string[];
+  education?: string[];
+  startYear?: number;
+  endYear?: number;
+  currentPosition?: string;
+  previousPositions?: string[];
+  biography?: string;
+  isActive?: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface IApiResponse<T> {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: T;
+}

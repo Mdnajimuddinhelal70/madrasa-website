@@ -5,7 +5,7 @@ import banner from "../../../../public/assets/images/bannerImg/madrasa2.png";
 
 export default function HeroSection() {
   return (
-    <section className="bg-gradient-to-r from-green-700 to-green-900 text-white">
+    <section className="bg-[#2c0202] text-white">
       <div className="max-w-7xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
         {/* Left Content */}
         <div>

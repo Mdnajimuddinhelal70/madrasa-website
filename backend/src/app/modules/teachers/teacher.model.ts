@@ -10,7 +10,11 @@ const teacherSchema = new Schema<ITeacher>(
     postOffice: { type: String, trim: true },
     thana: { type: String, trim: true },
     district: { type: String, trim: true },
-    phone: { type: String, trim: true },
+    phone: {
+      type: String,
+      trim: true,
+      match: [/^01[3-9]\d{8}$/, "Invalid phone number"],
+    },
     email: { type: String, unique: true, lowercase: true, trim: true },
     picture: { type: [String], default: [] },
     education: { type: [String], default: [] },
@@ -19,7 +23,6 @@ const teacherSchema = new Schema<ITeacher>(
     currentPosition: { type: String, trim: true },
     previousPositions: { type: [String], default: [] },
     biography: { type: String, trim: true },
-    isActive: { type: Boolean, default: true },
   },
   { timestamps: true },
 );

@@ -3,9 +3,6 @@ import cors from "cors";
 import type { Request, Response } from "express";
 import express from "express";
 import expressSession from "express-session";
-// import passport from "passport";
-
-// import "./app/config/passport";
 
 import { envVars } from "./app/config/env";
 import { globalErrorHandler } from "./app/middlewares/globalErrorHandler";
@@ -21,8 +18,6 @@ app.use(
     saveUninitialized: false,
   }),
 );
-// app.use(passport.initialize())
-// app.use(passport.session())
 
 app.use(express.json());
 app.set("trust proxy", 1);
