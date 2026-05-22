@@ -5,12 +5,7 @@ import { toast } from "sonner";
 
 import InputFieldError from "@/components/shared/InputFieldError";
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { loginUser } from "@/services/auth/AuthService";
 
@@ -25,10 +20,17 @@ const LoginAdmin = ({ redirect }: { redirect?: string }) => {
   }, [state]);
 
   return (
-    <form action={formAction}>
-      {redirect && <input type="hidden" name="redirect" value={redirect} />}
-      <FieldGroup>
-        <div className="grid grid-cols-1 gap-4">
+    <div className="flex min-h-screen items-center justify-center bg-muted/40 px-4">
+      <div className="w-full max-w-md rounded-2xl border bg-background p-6 shadow-lg">
+        {/* Header */}
+        <div className="mb-6 text-center">
+          <h1 className="text-2xl font-semibold">Welcome back</h1>
+          <p className="text-sm text-muted-foreground">Login to your account</p>
+        </div>
+
+        <form action={formAction} className="space-y-5">
+          {redirect && <input type="hidden" name="redirect" value={redirect} />}
+
           {/* Email */}
           <Field>
             <FieldLabel htmlFor="email">Email</FieldLabel>
@@ -37,9 +39,8 @@ const LoginAdmin = ({ redirect }: { redirect?: string }) => {
               name="email"
               type="email"
               placeholder="m@example.com"
-              //   required
+              className="mt-1"
             />
-
             <InputFieldError field="email" state={state} />
           </Field>
 
@@ -51,35 +52,38 @@ const LoginAdmin = ({ redirect }: { redirect?: string }) => {
               name="password"
               type="password"
               placeholder="Enter your password"
-              //   required
+              className="mt-1"
             />
             <InputFieldError field="password" state={state} />
           </Field>
-        </div>
-        <FieldGroup className="mt-4">
-          <Field>
-            <Button type="submit" disabled={isPending}>
-              {isPending ? "Logging in..." : "Login"}
-            </Button>
 
-            <FieldDescription className="px-6 text-center">
+          {/* Button */}
+          <Button type="submit" disabled={isPending} className="w-full">
+            {isPending ? "Logging in..." : "Login"}
+          </Button>
+
+          {/* Links */}
+          <div className="space-y-2 text-center text-sm">
+            <p className="text-muted-foreground">
               Don&apos;t have an account?{" "}
-              <a href="/register" className="text-blue-600 hover:underline">
+              <a
+                href="/register"
+                className="font-medium text-primary hover:underline"
+              >
                 Sign up
               </a>
-            </FieldDescription>
-            <FieldDescription className="px-6 text-center">
-              <a
-                href="/forgot-password"
-                className="text-blue-600 hover:underline"
-              >
-                Forgot password?
-              </a>
-            </FieldDescription>
-          </Field>
-        </FieldGroup>
-      </FieldGroup>
-    </form>
+            </p>
+
+            <a
+              href="/forgot-password"
+              className="block text-primary hover:underline"
+            >
+              Forgot password?
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

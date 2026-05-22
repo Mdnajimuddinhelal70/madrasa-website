@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
@@ -42,11 +43,18 @@ export const createTeacher = async (
 };
 
 // ---------- GET ALL ----------
-// export const getAllTeachers = async (): Promise<IApiResponse<ITeacher[]>> => {
-//   const res = await fetch(`${NEXT_PUBLIC_API_URL}/teacher`, {
-//     next: { tags: ["TEACHERS"], revalidate: 60 },
-//   });
-//   return res.json();
+// export const TeacherService = {
+//   async getAllTeachers() {
+//     const res = await fetch("http://localhost:5000/api/v1/teacher/all", {
+//       cache: "no-store",
+//     });
+
+//     if (!res.ok) {
+//       throw new Error("Failed to fetch teachers");
+//     }
+
+//     return res.json();
+//   },
 // };
 
 // // ---------- GET ONE ----------

@@ -20,6 +20,7 @@ export const loginUser = async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify(loginData),
+      credentials: "include",
     });
 
     const result = await res.json();
@@ -31,9 +32,11 @@ export const loginUser = async (
     (await cookies()).set("accessToken", result.data.token, {
       httpOnly: true,
       secure: false,
+      sameSite: "lax",
       path: "/",
       maxAge: 7 * 24 * 60 * 60,
     });
+
     redirect("/dashboard");
   } catch (error: any) {
     if (error?.digest?.startsWith("NEXT_REDIRECT")) {
@@ -53,11 +56,11 @@ export const loginUser = async (
 };
 
 // This function is for testing purposes to verify that the token is being sent correctly with the request. In a real application, you would typically have a more secure and robust way to handle authentication and user data fetching.
-export const getMe = async () => {
-  const res = await fetch("http://localhost:5000/api/v1/auth/me", {
-    method: "GET",
-    credentials: "include",
-  });
-
-  return res.json();
-};
+// export const getMe = async () => {
+//   const res = await fetch("http://localhost:5000/api/v1/auth/me", {
+//     method: "GET",
+//     credentials: "include",
+//   });
+//   console.log(res, "Response from server action getMe:");
+//   return res.json();
+// };

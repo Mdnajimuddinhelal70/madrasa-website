@@ -7,15 +7,15 @@ const DashboardHomePage = async () => {
   if (!token) {
     redirect("/login");
   }
+
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-[#2c0202]">
-        Welcome to the Dashboard
-      </h1>
-      <p className="mt-4 text-gray-700">
-        This is the dashboard home page. Here you can manage your content and
-        view analytics.
-      </p>
+    <div className="flex flex-1 flex-col gap-4 p-4">
+      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+        <div className="aspect-video rounded-xl bg-muted/50" />
+        <div className="aspect-video rounded-xl bg-muted/50" />
+        <div className="aspect-video rounded-xl bg-muted/50" />
+      </div>
+      <div className="min-h-screen flex-1 rounded-xl bg-muted/50 md:min-h-min" />
     </div>
   );
 };

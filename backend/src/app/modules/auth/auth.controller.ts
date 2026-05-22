@@ -10,6 +10,7 @@ const loginAdmin = catchAsync(async (req: Request, res: Response) => {
 
   res.cookie("accessToken", result.token, {
     httpOnly: true,
+    secure: false,
     sameSite: "lax",
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });

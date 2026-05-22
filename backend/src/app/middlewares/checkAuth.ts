@@ -11,6 +11,7 @@ export const checkAuth =
     try {
       const token =
         req.cookies?.accessToken || req.headers.authorization?.split(" ")[1];
+      // console.log(token, "Here is token");
 
       if (!token) {
         throw new AppError(httpStatus.UNAUTHORIZED, "No token provided");

@@ -1,20 +1,29 @@
-import { getMe } from "@/services/auth/AuthService";
-import { redirect } from "next/navigation";
+import { AppSidebar } from "@/components/modules/Dashboard/app-sidebar";
+import { Separator } from "@/components/ui/separator";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 
-const DasboardLayout = async ({ children }: { children: React.ReactNode }) => {
-  const user = await getMe();
-
-  if (!user) {
-    redirect("/login");
-  }
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-      <header className="bg-[#2c0202] text-white p-4">
-        <h1 className="text-2xl font-bold">Dashboard</h1>
-      </header>
-      <main className="p-4">{children}</main>
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+
+      <SidebarInset>
+        {/* Header */}
+        <header className="flex h-16 items-center gap-2 border-b px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Separator orientation="vertical" className="mr-2 h-4" />
+          <h1 className="text-lg font-semibold">Dashboard</h1>
+        </header>
+
+        {/* Page Content */}
+        <main className="flex flex-1 flex-col">{children}</main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 };
 
-export default DasboardLayout;
+export default DashboardLayout;

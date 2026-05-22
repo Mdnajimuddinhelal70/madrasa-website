@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 "use server";
 
 export const getUserInfo = async (): Promise<any> => {
@@ -9,7 +8,9 @@ export const getUserInfo = async (): Promise<any> => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
     });
+
     const result = await res.json();
     if (!res.ok) {
       throw new Error(result?.message || "Failed to fetch user info");

@@ -13,7 +13,6 @@ const teacherSchema = new Schema<ITeacher>(
     phone: {
       type: String,
       trim: true,
-      match: [/^01[3-9]\d{8}$/, "Invalid phone number"],
     },
     email: { type: String, unique: true, lowercase: true, trim: true },
     picture: { type: [String], default: [] },

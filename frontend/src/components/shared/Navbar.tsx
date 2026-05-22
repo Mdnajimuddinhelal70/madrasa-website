@@ -20,7 +20,6 @@ export default function Navbar() {
             <Link href="/teachers">Teachers</Link>
             <Link href="/courses">Courses</Link>
             <Link href="/contact">Contact</Link>
-            <Link href="/create-teacher">Create Teacher</Link>
             <Link href="/login">Login</Link>
           </div>
 

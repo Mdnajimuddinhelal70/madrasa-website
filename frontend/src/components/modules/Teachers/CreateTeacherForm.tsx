@@ -68,19 +68,16 @@ export const CreateTeacherForm = () => {
       setSubmitting(true);
       const fd = new FormData();
 
-      // ✅ file upload (FIXED)
       values.picture?.forEach((file) => fd.append("files", file));
 
       const { picture, education, previousPositions, ...rest } = values;
 
-      // ✅ normal fields
       Object.entries(rest).forEach(([k, v]) => {
         if (v !== undefined && v !== null && v !== "") {
           fd.append(k, String(v));
         }
       });
 
-      // ✅ array fields
       education?.forEach((e) => fd.append("education", e));
       previousPositions?.forEach((p) => fd.append("previousPositions", p));
 
