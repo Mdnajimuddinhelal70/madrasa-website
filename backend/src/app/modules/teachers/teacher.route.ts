@@ -15,7 +15,7 @@ router.post(
   TeacherController.createTeacher,
 );
 router.get("/all", TeacherController.getAllTeachers);
-router.get("/single/:id", TeacherController.getSingleTeacher);
+router.get("/:id", TeacherController.getSingleTeacher);
 router.patch(
   "/:id",
   checkAuth("admin"),

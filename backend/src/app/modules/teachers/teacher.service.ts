@@ -22,7 +22,9 @@ const getSingleTeacher = async (id: string) => {
 };
 
 const updateTeacher = async (id: string, payload: Partial<ITeacher>) => {
-  const result = await Teacher.findByIdAndUpdate(id, payload, { new: true });
+  const result = await Teacher.findByIdAndUpdate(id, payload, {
+    returnDocument: "after",
+  });
 
   if (!result) {
     throw new AppError(httpStatus.NOT_FOUND, "Teacher not found");
