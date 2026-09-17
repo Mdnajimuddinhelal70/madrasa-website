@@ -5,12 +5,12 @@
 import { IApiResponse, ITeacher } from "@/types/user.interface";
 import { cookies } from "next/headers";
 
-const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_BASE_API;
+const baseApiUrl = process.env.NEXT_PUBLIC_BASE_API;
 
 export const getAllTeachers = async (): Promise<IApiResponse<ITeacher[]>> => {
   const accessToken = (await cookies()).get("accessToken")?.value;
 
-  const res = await fetch(`${NEXT_PUBLIC_API_URL}/teacher/all`, {
+  const res = await fetch(`${baseApiUrl}/teacher/all`, {
     method: "GET",
     headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
     next: {

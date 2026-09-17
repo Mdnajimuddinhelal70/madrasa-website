@@ -1,18 +1,8 @@
-export type CreateTeacherFormValues = {
+export type CreateManagerFormValues = {
   name: string;
-  fatherName: string;
-  motherName: string;
-  village: string;
-  postOffice: string;
-  thana: string;
-  district: string;
   phone: string;
-  email: string;
-  education: string[];
-  previousPositions: string[];
-  currentPosition: string;
-  biography: string;
   picture: File[];
+  description: string;
   startYear?: number;
   endYear?: number;
 };

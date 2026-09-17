@@ -82,6 +82,7 @@ export const CreateTeacherForm = () => {
       previousPositions?.forEach((p) => fd.append("previousPositions", p));
 
       const res = await createTeacher(fd);
+      console.log("Create Teacher Response:", res);
 
       if (res.success) {
         toast.success(res.message || "Teacher created successfully");

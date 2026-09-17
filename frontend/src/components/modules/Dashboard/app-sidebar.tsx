@@ -21,6 +21,7 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { logoutUser } from "@/services/teacher/logout";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SearchForm } from "./search-form";
@@ -92,7 +93,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-
+      <div className="p-4">
+        <button
+          onClick={async () => {
+            await logoutUser();
+          }}
+          className="w-full bg-red-500 py-2 rounded"
+        >
+          Log out
+        </button>
+      </div>
       <SidebarRail />
     </Sidebar>
   );

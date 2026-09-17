@@ -10,8 +10,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { deleteTeacher } from "@/services/teacher/TeacherService";
+
 import { Plus } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 type Teacher = {
   _id: string;
@@ -20,6 +24,20 @@ type Teacher = {
 };
 
 export default function AllTeachers({ teachers }: { teachers: Teacher[] }) {
+  const router = useRouter();
+  const handleDelete = async (id: string) => {
+    const confirmDelete = confirm("Are you sure?");
+    if (!confirmDelete) return;
+
+    const res = await deleteTeacher(id);
+
+    if (res.success) {
+      toast.success("Teacher deleted");
+      router.refresh();
+    } else {
+      toast.error("Delete failed");
+    }
+  };
   return (
     <div className="space-y-6 p-4">
       {/* 🔹 Header */}
@@ -68,10 +86,16 @@ export default function AllTeachers({ teachers }: { teachers: Teacher[] }) {
                   <TableCell>{teacher.name}</TableCell>
                   <TableCell>{teacher.email}</TableCell>
                   <TableCell className="text-right space-x-2">
-                    <Button size="sm" variant="outline">
-                      Edit
-                    </Button>
-                    <Button size="sm" variant="destructive">
+                    <Link href={`/dashboard/edit-teacher/${teacher._id}`}>
+                      <Button size="sm" variant="outline">
+                        Edit
+                      </Button>
+                    </Link>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      onClick={() => handleDelete(teacher._id)}
+                    >
                       Delete
                     </Button>
                   </TableCell>

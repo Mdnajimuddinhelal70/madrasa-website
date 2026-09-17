@@ -14,15 +14,28 @@ export const sidebarData = {
       ],
     },
     {
+      title: "Managers",
+      items: [
+        {
+          title: "All Managers",
+          url: "/dashboard/all-managers",
+        },
+        {
+          title: "Add new Manager",
+          url: "/dashboard/create-manager",
+        },
+      ],
+    },
+    {
       title: "Students",
       items: [
         {
           title: "All Students",
-          url: "/dashboard/students",
+          url: "/dashboard/all-students",
         },
         {
           title: "Add new Student",
-          url: "/dashboard/students/add",
+          url: "/dashboard/create-student",
         },
       ],
     },
