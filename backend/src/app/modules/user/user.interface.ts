@@ -12,15 +12,24 @@ export enum IsActive {
   BLOCKED = "BLOCKED",
 }
 
+export interface IAuthProvider {
+  provider: string;
+  providerId: string;
+}
+
 export interface IUser {
   _id?: Types.ObjectId;
   name: string;
   email: string;
   password?: string;
-  picture?: string[];
+  phone?: string;
+  picture?: string;
   address?: string;
-  isDeleted?: string;
+  isDeleted?: boolean;
   isActive?: IsActive;
   role: Role;
+  isVerified?: boolean;
+  auths?: IAuthProvider[];
   createdAt?: Date;
+  updatedAt?: Date;
 }
