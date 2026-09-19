@@ -1,7 +1,7 @@
 "use server";
 
 export const deleteTeacher = async (id: string) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/teacher/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/teacher/${id}`, {
     method: "DELETE",
     credentials: "include",
   });
