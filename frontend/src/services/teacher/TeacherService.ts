@@ -8,7 +8,6 @@ import { cookies } from "next/headers";
 
 const baseApiUrl = process.env.NEXT_PUBLIC_BASE_API;
 
-// ---------- CREATE ----------
 export const createTeacher = async (
   formData: FormData,
 ): Promise<IApiResponse<ITeacher>> => {
@@ -43,22 +42,6 @@ export const createTeacher = async (
   return data;
 };
 
-// ---------- GET ALL ----------
-// export const TeacherService = {
-//   async getAllTeachers() {
-//     const res = await fetch(`${baseApiUrl}/teacher/all`, {
-//       cache: "no-store",
-//     });
-
-//     if (!res.ok) {
-//       throw new Error("Failed to fetch teachers");
-//     }
-
-//     return res.json();
-//   },
-// };
-
-// // ---------- GET ONE ----------
 export const getSingleTeacher = async (
   id: string,
 ): Promise<IApiResponse<ITeacher>> => {

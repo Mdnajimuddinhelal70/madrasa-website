@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
 
@@ -7,11 +8,10 @@ import InputFieldError from "@/components/shared/InputFieldError";
 import { Button } from "@/components/ui/button";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { loginUser } from "@/services/auth/AuthService";
+import { loginUser } from "@/services/auth/loginUser";
 
-const LoginAdmin = ({ redirect }: { redirect?: string }) => {
+const LoginAdmin = () => {
   const [state, formAction, isPending] = useActionState(loginUser, null);
-  console.log(state, "here is state");
 
   useEffect(() => {
     if (state && !state.success && state.message) {
@@ -29,11 +29,10 @@ const LoginAdmin = ({ redirect }: { redirect?: string }) => {
         </div>
 
         <form action={formAction} className="space-y-5">
-          {redirect && <input type="hidden" name="redirect" value={redirect} />}
-
           {/* Email */}
           <Field>
             <FieldLabel htmlFor="email">Email</FieldLabel>
+
             <Input
               id="email"
               name="email"
@@ -41,12 +40,14 @@ const LoginAdmin = ({ redirect }: { redirect?: string }) => {
               placeholder="m@example.com"
               className="mt-1"
             />
+
             <InputFieldError field="email" state={state} />
           </Field>
 
           {/* Password */}
           <Field>
             <FieldLabel htmlFor="password">Password</FieldLabel>
+
             <Input
               id="password"
               name="password"
@@ -54,32 +55,20 @@ const LoginAdmin = ({ redirect }: { redirect?: string }) => {
               placeholder="Enter your password"
               className="mt-1"
             />
+
             <InputFieldError field="password" state={state} />
           </Field>
 
-          {/* Button */}
+          {/* Login Button */}
           <Button type="submit" disabled={isPending} className="w-full">
             {isPending ? "Logging in..." : "Login"}
           </Button>
 
-          {/* Links */}
-          <div className="space-y-2 text-center text-sm">
-            <p className="text-muted-foreground">
-              Don&apos;t have an account?{" "}
-              <a
-                href="/register"
-                className="font-medium text-primary hover:underline"
-              >
-                Sign up
-              </a>
-            </p>
-
-            <a
-              href="/forgot-password"
-              className="block text-primary hover:underline"
-            >
-              Forgot password?
-            </a>
+          {/* Back to Home */}
+          <div className="text-center text-sm">
+            <Link href="/" className="font-medium text-primary hover:underline">
+              Back to home
+            </Link>
           </div>
         </form>
       </div>

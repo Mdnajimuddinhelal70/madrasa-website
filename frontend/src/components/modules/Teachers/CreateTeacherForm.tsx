@@ -66,22 +66,19 @@ export const CreateTeacherForm = () => {
   const onSubmit = async (values: CreateTeacherFormValues) => {
     try {
       setSubmitting(true);
+
       const fd = new FormData();
 
-      values.picture?.forEach((file) => fd.append("files", file));
-
-      const { picture, education, previousPositions, ...rest } = values;
-
-      Object.entries(rest).forEach(([k, v]) => {
-        if (v !== undefined && v !== null && v !== "") {
-          fd.append(k, String(v));
-        }
+      values.picture?.forEach((file) => {
+        fd.append("files", file);
       });
 
-      education?.forEach((e) => fd.append("education", e));
-      previousPositions?.forEach((p) => fd.append("previousPositions", p));
+      const { picture, ...teacherData } = values;
+
+      fd.append("data", JSON.stringify(teacherData));
 
       const res = await createTeacher(fd);
+
       console.log("Create Teacher Response:", res);
 
       if (res.success) {
@@ -96,7 +93,6 @@ export const CreateTeacherForm = () => {
       setSubmitting(false);
     }
   };
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}

@@ -3,15 +3,19 @@ import { FieldDescription } from "../ui/field";
 
 interface InputFieldErrorProps {
   field: string;
-  state: IInputErrorState;
+  state: IInputErrorState | null;
 }
 
 const InputFieldError = ({ field, state }: InputFieldErrorProps) => {
-  if (getInputFieldError(field, state)) {
+  if (!state) {
+    return null;
+  }
+
+  const error = getInputFieldError(field, state);
+
+  if (error) {
     return (
-      <FieldDescription className="text-red-600">
-        {getInputFieldError(field, state)}
-      </FieldDescription>
+      <FieldDescription className="text-red-600">{error}</FieldDescription>
     );
   }
 
