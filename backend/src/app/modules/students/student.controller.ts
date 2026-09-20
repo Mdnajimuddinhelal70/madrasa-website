@@ -1,77 +1,75 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
+
 import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
-import { IGraduateStudent } from "./student.interface";
-import { GraduateService } from "./student.service";
+import { StudentService } from "./student.service";
 
-const createGraduate = catchAsync(async (req: Request, res: Response) => {
-  const payload: IGraduateStudent = {
-    ...req.body,
-    picture: (req.files as Express.Multer.File[]).map((file) => file.path),
-  };
-  const result = await GraduateService.createGraduate(payload);
+const createStudent = catchAsync(async (req: Request, res: Response) => {
+  const result = await StudentService.createStudent(req.body);
+
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.CREATED,
-    message: "Graduate created successfully",
-    data: result,
-  });
-});
-const getAllGraduates = catchAsync(async (req: Request, res: Response) => {
-  const result = await GraduateService.getAllGraduates();
-
-  sendResponse(res, {
-    success: true,
-    statusCode: httpStatus.OK,
-    message: "Graduates retrieved successfully",
+    message: "Student created successfully",
     data: result,
   });
 });
 
-const getSingleGraduate = catchAsync(async (req: Request, res: Response) => {
-  const { id } = req.params as any;
-
-  const result = await GraduateService.getSingleGraduate(id);
+const getAllStudents = catchAsync(async (req: Request, res: Response) => {
+  const result = await StudentService.getAllStudents();
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Graduate retrieved successfully",
+    message: "Students retrieved successfully",
     data: result,
   });
 });
 
-const updateGraduate = catchAsync(async (req: Request, res: Response) => {
-  const { id } = req.params as any;
+const getSingleStudent = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
 
-  const result = await GraduateService.updateGraduate(id, req.body);
+  const result = await StudentService.getSingleStudent(id as string);
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Graduate updated successfully",
+    message: "Student retrieved successfully",
     data: result,
   });
 });
 
-const deleteGraduate = catchAsync(async (req: Request, res: Response) => {
-  const { id } = req.params as any;
+const updateStudent = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
 
-  await GraduateService.deleteGraduate(id);
+  const result = await StudentService.updateStudent(id as string, req.body);
 
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: "Graduate deleted successfully",
+    message: "Student updated successfully",
+    data: result,
+  });
+});
+
+const deleteStudent = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  await StudentService.deleteStudent(id as string);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Student deleted successfully",
     data: null,
   });
 });
 
-export const GraduateController = {
-  getAllGraduates,
-  getSingleGraduate,
-  updateGraduate,
-  deleteGraduate,
-  createGraduate,
+export const StudentController = {
+  getAllStudents,
+  getSingleStudent,
+  updateStudent,
+  deleteStudent,
+  createStudent,
 };

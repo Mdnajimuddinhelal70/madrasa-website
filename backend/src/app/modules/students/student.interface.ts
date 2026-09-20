@@ -1,4 +1,4 @@
-export interface IGraduateStudent {
+export interface IStudents {
   name: string;
   fatherName?: string;
   motherName?: string;
@@ -7,7 +7,8 @@ export interface IGraduateStudent {
   thana?: string;
   district?: string;
   phone?: string;
-  picture?: string[];
+  guardianPhone?: string;
+  picture?: string;
   completionYear: number;
   biography?: string;
   isActive?: boolean;

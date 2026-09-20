@@ -1,33 +1,33 @@
 import express from "express";
-import { multerUpload } from "../../config/multer.config";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
-import { GraduateController } from "./student.controller";
+
+import { StudentController } from "./student.controller";
 import {
-  createGraduateZodSchema,
-  updateGraduateZodSchema,
+  createStudentZodSchema,
+  updateStudentZodSchema,
 } from "./student.validation";
 
 const router = express.Router();
 router.post(
-  "/create-graduate",
-  checkAuth("admin"),
-  multerUpload.array("files"),
-  validateRequest(createGraduateZodSchema),
-  GraduateController.createGraduate,
+  "/create",
+  // checkAuth("admin"),
+  // multerUpload.array("files"),
+  validateRequest(createStudentZodSchema),
+  StudentController.createStudent,
 );
 
-router.get("/all", GraduateController.getAllGraduates);
+router.get("/all", StudentController.getAllStudents);
 
-router.get("/:id", GraduateController.getSingleGraduate);
+router.get("/:id", StudentController.getSingleStudent);
 
 router.patch(
   "/:id",
   checkAuth("admin"),
-  validateRequest(updateGraduateZodSchema),
-  GraduateController.updateGraduate,
+  validateRequest(updateStudentZodSchema),
+  StudentController.updateStudent,
 );
 
-router.delete("/:id", checkAuth("admin"), GraduateController.deleteGraduate);
+router.delete("/:id", checkAuth("admin"), StudentController.deleteStudent);
 
-export const GraduateRoutes = router;
+export const StudentRoutes = router;

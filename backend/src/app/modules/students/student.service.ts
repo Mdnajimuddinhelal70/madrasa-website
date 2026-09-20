@@ -1,40 +1,43 @@
-import { IGraduateStudent } from "./student.interface";
-import { GraduateStudent } from "./student.model";
+import { IStudents } from "./student.interface";
+import { Students } from "./student.model";
 
-const createGraduate = async (payload: IGraduateStudent) => {
-  const result = await GraduateStudent.create(payload);
+const createStudent = async (payload: IStudents) => {
+  const result = await Students.create(payload);
+
   return result;
 };
 
-const getAllGraduates = async () => {
-  const result = await GraduateStudent.find().sort({ completionYear: -1 });
+const getAllStudents = async () => {
+  const result = await Students.find().sort({ completionYear: -1 });
+
   return result;
 };
 
-const getSingleGraduate = async (id: string) => {
-  const result = await GraduateStudent.findById(id);
+const getSingleStudent = async (id: string) => {
+  const result = await Students.findById(id);
+
   return result;
 };
 
-const updateGraduate = async (
-  id: string,
-  payload: Partial<IGraduateStudent>,
-) => {
-  const result = await GraduateStudent.findByIdAndUpdate(id, payload, {
+const updateStudent = async (id: string, payload: Partial<IStudents>) => {
+  const result = await Students.findByIdAndUpdate(id, payload, {
     new: true,
+    runValidators: true,
   });
+
   return result;
 };
 
-const deleteGraduate = async (id: string) => {
-  const result = await GraduateStudent.findByIdAndDelete(id);
+const deleteStudent = async (id: string) => {
+  const result = await Students.findByIdAndDelete(id);
+
   return result;
 };
 
-export const GraduateService = {
-  getAllGraduates,
-  getSingleGraduate,
-  updateGraduate,
-  deleteGraduate,
-  createGraduate,
+export const StudentService = {
+  getAllStudents,
+  getSingleStudent,
+  updateStudent,
+  deleteStudent,
+  createStudent,
 };

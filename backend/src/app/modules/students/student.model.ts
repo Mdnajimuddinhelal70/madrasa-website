@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { IGraduateStudent } from "./student.interface";
+import { IStudents } from "./student.interface";
 
-const graduateSchema = new Schema<IGraduateStudent>(
+const studentsSchema = new Schema<IStudents>(
   {
     name: { type: String, required: true, trim: true },
     fatherName: { type: String, trim: true },
@@ -10,8 +10,15 @@ const graduateSchema = new Schema<IGraduateStudent>(
     postOffice: String,
     thana: String,
     district: String,
-    phone: String,
-    picture: { type: [String], default: [] },
+    phone: {
+      type: String,
+      trim: true,
+    },
+    guardianPhone: {
+      type: String,
+      trim: true,
+    },
+    picture: { type: String, trim: true },
     completionYear: { type: Number, required: true },
     biography: String,
     isActive: { type: Boolean, default: true },
@@ -19,7 +26,4 @@ const graduateSchema = new Schema<IGraduateStudent>(
   { timestamps: true },
 );
 
-export const GraduateStudent = model<IGraduateStudent>(
-  "GraduateStudent",
-  graduateSchema,
-);
+export const Students = model<IStudents>("Students", studentsSchema);

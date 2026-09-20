@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createGraduateZodSchema = z.object({
+export const createStudentZodSchema = z.object({
   name: z.string(),
   fatherName: z.string().optional(),
   motherName: z.string().optional(),
@@ -9,12 +9,14 @@ export const createGraduateZodSchema = z.object({
   thana: z.string().optional(),
   district: z.string().optional(),
   phone: z.string().optional(),
+  guardianPhone: z.string().optional(),
+  picture: z.string().optional(),
   completionYear: z.number(),
   biography: z.string().optional(),
   isActive: z.boolean().optional(),
 });
 
-export const updateGraduateZodSchema = z.object({
+export const updateStudentZodSchema = z.object({
   name: z.string().optional(),
   completionYear: z.number().optional(),
   biography: z.string().optional(),
