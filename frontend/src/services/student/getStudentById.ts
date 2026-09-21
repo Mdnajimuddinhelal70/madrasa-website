@@ -2,27 +2,43 @@
 
 import { cookies } from "next/headers";
 
-interface UpdateStudentResponse {
+export interface Student {
+  _id: string;
+  name: string;
+  fatherName?: string;
+  motherName?: string;
+  village?: string;
+  postOffice?: string;
+  thana?: string;
+  district?: string;
+  phone?: string;
+  guardianPhone?: string;
+  picture?: string;
+  completionYear: number;
+  biography?: string;
+  isActive: boolean;
+}
+
+interface GetStudentByIdResponse {
   success: boolean;
-  data?: unknown;
+  data?: Student;
   message?: string;
 }
 
-export const updateStudent = async (
+export const getStudentById = async (
   id: string,
-  formData: FormData,
-): Promise<UpdateStudentResponse> => {
+): Promise<GetStudentByIdResponse> => {
   try {
     const accessToken = (await cookies()).get("accessToken")?.value;
 
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_BASE_API}/student/${id}`,
       {
-        method: "PATCH",
+        method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-        body: formData,
+        cache: "no-store",
       },
     );
 
@@ -31,14 +47,13 @@ export const updateStudent = async (
     if (!response.ok) {
       return {
         success: false,
-        message: result.message || "Failed to update student",
+        message: result.message || "Failed to get student",
       };
     }
 
     return {
       success: true,
       data: result.data,
-      message: result.message || "Student updated successfully",
     };
   } catch (error) {
     return {

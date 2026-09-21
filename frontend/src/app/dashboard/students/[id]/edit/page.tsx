@@ -1,13 +1,13 @@
-import StudentDetails from "@/components/modules/Students/StudentDetails";
+import EditStudentForm from "@/components/modules/Students/EditStudentForm";
 import { getStudentById } from "@/services/student/getStudentById";
 
-interface StudentDetailsPageProps {
+interface EditStudentPageProps {
   params: Promise<{
     id: string;
   }>;
 }
 
-const StudentDetailsPage = async ({ params }: StudentDetailsPageProps) => {
+const EditStudentPage = async ({ params }: EditStudentPageProps) => {
   const { id } = await params;
 
   const result = await getStudentById(id);
@@ -22,9 +22,11 @@ const StudentDetailsPage = async ({ params }: StudentDetailsPageProps) => {
 
   return (
     <div className="p-6">
-      <StudentDetails student={result.data} />
+      <h1 className="mb-6 text-2xl font-bold">Edit Student</h1>
+
+      <EditStudentForm student={result.data} />
     </div>
   );
 };
 
-export default StudentDetailsPage;
+export default EditStudentPage;
