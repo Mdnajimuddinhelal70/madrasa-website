@@ -31,11 +31,11 @@ export const sidebarData = {
       items: [
         {
           title: "All Students",
-          url: "/dashboard/all-students",
+          url: "/dashboard/students",
         },
         {
           title: "Add new Student",
-          url: "/dashboard/create-student",
+          url: "/dashboard/students/create",
         },
       ],
     },
