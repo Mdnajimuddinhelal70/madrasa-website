@@ -1,4 +1,5 @@
-# Madrasa Website
+# Birendra Nagar Al Arafah ibtedayi Hafizaya Madrasah. 
+
 
 A full-stack Madrasa Management Website built with modern web technologies.
 The project is being developed with a separate frontend and backend architecture.
