@@ -1,4 +1,4 @@
-export interface IStudents {
+export interface IStudent {
   name: string;
   fatherName?: string;
   motherName?: string;

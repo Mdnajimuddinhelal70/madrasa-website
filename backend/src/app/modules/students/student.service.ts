@@ -1,26 +1,26 @@
-import { IStudents } from "./student.interface";
-import { Students } from "./student.model";
+import { IStudent } from "./student.interface";
+import { Student } from "./student.model";
 
-const createStudent = async (payload: IStudents) => {
-  const result = await Students.create(payload);
+const createStudent = async (payload: IStudent) => {
+  const result = await Student.create(payload);
 
   return result;
 };
 
 const getAllStudents = async () => {
-  const result = await Students.find().sort({ completionYear: -1 });
+  const result = await Student.find().sort({ completionYear: -1 });
 
   return result;
 };
 
 const getSingleStudent = async (id: string) => {
-  const result = await Students.findById(id);
+  const result = await Student.findById(id);
 
   return result;
 };
 
-const updateStudent = async (id: string, payload: Partial<IStudents>) => {
-  const result = await Students.findByIdAndUpdate(id, payload, {
+const updateStudent = async (id: string, payload: Partial<IStudent>) => {
+  const result = await Student.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,
   });
@@ -29,7 +29,7 @@ const updateStudent = async (id: string, payload: Partial<IStudents>) => {
 };
 
 const deleteStudent = async (id: string) => {
-  const result = await Students.findByIdAndDelete(id);
+  const result = await Student.findByIdAndDelete(id);
 
   return result;
 };

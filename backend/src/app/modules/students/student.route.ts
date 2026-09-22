@@ -1,4 +1,6 @@
 import express from "express";
+
+import { multerUpload } from "../../config/multer.config";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
 
@@ -9,10 +11,11 @@ import {
 } from "./student.validation";
 
 const router = express.Router();
+
 router.post(
   "/create",
-  // checkAuth("admin"),
-  // multerUpload.array("files"),
+  checkAuth("admin"),
+  multerUpload.single("file"),
   validateRequest(createStudentZodSchema),
   StudentController.createStudent,
 );
@@ -24,6 +27,7 @@ router.get("/:id", StudentController.getSingleStudent);
 router.patch(
   "/:id",
   checkAuth("admin"),
+  multerUpload.single("file"),
   validateRequest(updateStudentZodSchema),
   StudentController.updateStudent,
 );

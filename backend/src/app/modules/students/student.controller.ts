@@ -5,8 +5,26 @@ import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { StudentService } from "./student.service";
 
+// const createStudent = catchAsync(async (req: Request, res: Response) => {
+//   const result = await StudentService.createStudent(req.body);
+
+//   sendResponse(res, {
+//     success: true,
+//     statusCode: httpStatus.CREATED,
+//     message: "Student created successfully",
+//     data: result,
+//   });
+// });
+
 const createStudent = catchAsync(async (req: Request, res: Response) => {
-  const result = await StudentService.createStudent(req.body);
+  const picture = req.file?.path;
+
+  const studentData = {
+    ...req.body,
+    ...(picture && { picture }),
+  };
+
+  const result = await StudentService.createStudent(studentData);
 
   sendResponse(res, {
     success: true,
@@ -43,7 +61,14 @@ const getSingleStudent = catchAsync(async (req: Request, res: Response) => {
 const updateStudent = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const result = await StudentService.updateStudent(id as string, req.body);
+  const picture = req.file?.path;
+
+  const studentData = {
+    ...req.body,
+    ...(picture && { picture }),
+  };
+
+  const result = await StudentService.updateStudent(id as string, studentData);
 
   sendResponse(res, {
     success: true,

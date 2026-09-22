@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { IStudents } from "./student.interface";
+import { IStudent } from "./student.interface";
 
-const studentsSchema = new Schema<IStudents>(
+const studentsSchema = new Schema<IStudent>(
   {
     name: { type: String, required: true, trim: true },
     fatherName: { type: String, trim: true },
@@ -26,4 +26,4 @@ const studentsSchema = new Schema<IStudents>(
   { timestamps: true },
 );
 
-export const Students = model<IStudents>("Students", studentsSchema);
+export const Student = model<IStudent>("Student", studentsSchema);
