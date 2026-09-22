@@ -20,6 +20,7 @@ interface EnvConfig {
 
   EXPRESS_SESSION_SECRET: string;
   FRONTEND_URL: string;
+  FRONTEND_PRODUCTION_URL: string;
 
   CLOUDINARY: {
     CLOUDINARY_CLOUD_NAME: string;
@@ -47,6 +48,7 @@ const loadEnvVariables = (): EnvConfig => {
 
     "EXPRESS_SESSION_SECRET",
     "FRONTEND_URL",
+    "FRONTEND_PRODUCTION_URL",
 
     "CLOUDINARY_CLOUD_NAME",
     "CLOUDINARY_API_KEY",
@@ -77,6 +79,7 @@ const loadEnvVariables = (): EnvConfig => {
 
     EXPRESS_SESSION_SECRET: process.env.EXPRESS_SESSION_SECRET as string,
     FRONTEND_URL: process.env.FRONTEND_URL as string,
+    FRONTEND_PRODUCTION_URL: process.env.FRONTEND_PRODUCTION_URL as string,
 
     CLOUDINARY: {
       CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
