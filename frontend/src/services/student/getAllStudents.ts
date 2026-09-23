@@ -15,6 +15,16 @@ export const getAllStudents = async () => {
   });
 
   if (!res.ok) {
+    const errorText = await res.text();
+
+    console.log("Student API Error:", {
+      status: res.status,
+      statusText: res.statusText,
+      body: errorText,
+      apiUrl: process.env.NEXT_PUBLIC_BASE_API,
+      hasToken: !!accessToken,
+    });
+
     throw new Error("Failed to fetch students");
   }
 
