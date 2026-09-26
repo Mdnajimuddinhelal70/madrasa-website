@@ -1,7 +1,13 @@
+import AboutIntroduction from "@/components/modules/About/AboutIntroduction";
+import PrincipalMessage from "@/components/modules/About/PrincipalMessage";
+import AboutHero from "../../../components/modules/About/AboutHero";
+
 const AboutPage = () => {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">About Us</h1>
+      <AboutHero />
+      <AboutIntroduction />
+      <PrincipalMessage />
     </div>
   );
 };

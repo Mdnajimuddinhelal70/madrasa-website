@@ -1,0 +1,13 @@
+
+compilerOptions 
+
+
+"rootDir" : "./src"
+src/app/routes/index.ts => dist/app/routes/index.js
+
+
+"outDir" : "./dist"
+structur maintain korbe.
+
+
+
