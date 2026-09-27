@@ -24,8 +24,8 @@ export const navItems = [
     icon: Users,
   },
   {
-    label: "Courses",
-    href: "/courses",
+    label: "Education",
+    href: "/education",
     icon: BookOpen,
   },
   {
