@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getToken } from "@/lib/auth";
 import { getAllManagers } from "@/services/manager/getAllManagers";
 import { getAllStudents } from "@/services/student/getAllStudents";
@@ -13,6 +14,10 @@ const DashboardHomePage = async () => {
   const totalTeachers = teacherResponse.data.length;
   const totalStudents = studentsResponse.data.length;
   const totalManagers = managersResponse.data.length;
+
+  const activeStudents = studentsResponse.data.filter(
+    (student: any) => student.isActive === true,
+  ).length;
 
   const token = await getToken();
 
@@ -76,7 +81,7 @@ const DashboardHomePage = async () => {
             <div>
               <p className="text-sm text-muted-foreground">Active Students</p>
 
-              <h3 className="mt-2 text-3xl font-bold">--</h3>
+              <h3 className="mt-2 text-3xl font-bold">{activeStudents}</h3>
             </div>
 
             <div className="rounded-xl bg-amber-100 p-3 text-amber-600">
