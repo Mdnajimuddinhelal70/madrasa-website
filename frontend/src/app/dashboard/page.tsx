@@ -1,9 +1,19 @@
 import { getToken } from "@/lib/auth";
+import { getAllManagers } from "@/services/manager/getAllManagers";
+import { getAllStudents } from "@/services/student/getAllStudents";
+import { getAllTeachers } from "@/services/teacher/GetAllTeachers";
 import { BookOpen, GraduationCap, UserPlus, Users } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const DashboardHomePage = async () => {
+  const teacherResponse = await getAllTeachers();
+  const studentsResponse = await getAllStudents();
+  const managersResponse = await getAllManagers();
+  const totalTeachers = teacherResponse.data.length;
+  const totalStudents = studentsResponse.data.length;
+  const totalManagers = managersResponse.data.length;
+
   const token = await getToken();
 
   if (!token) {
@@ -36,7 +46,7 @@ const DashboardHomePage = async () => {
             <div>
               <p className="text-sm text-muted-foreground">Total Teachers</p>
 
-              <h3 className="mt-2 text-3xl font-bold">--</h3>
+              <h3 className="mt-2 text-3xl font-bold">{totalTeachers}</h3>
             </div>
 
             <div className="rounded-xl bg-blue-100 p-3 text-blue-600">
@@ -51,7 +61,7 @@ const DashboardHomePage = async () => {
             <div>
               <p className="text-sm text-muted-foreground">Total Students</p>
 
-              <h3 className="mt-2 text-3xl font-bold">--</h3>
+              <h3 className="mt-2 text-3xl font-bold">{totalStudents}</h3>
             </div>
 
             <div className="rounded-xl bg-green-100 p-3 text-green-600">
@@ -81,7 +91,7 @@ const DashboardHomePage = async () => {
             <div>
               <p className="text-sm text-muted-foreground">Total Managers</p>
 
-              <h3 className="mt-2 text-3xl font-bold">--</h3>
+              <h3 className="mt-2 text-3xl font-bold">{totalManagers}</h3>
             </div>
 
             <div className="rounded-xl bg-purple-100 p-3 text-purple-600">
