@@ -1,6 +1,6 @@
 "use client";
 
-import { X } from "lucide-react";
+import { LayoutDashboard, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -9,9 +9,14 @@ import { loginItem, navItems } from "./nav.config";
 interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
+  isLoggedIn: boolean;
 }
 
-export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
+export default function MobileNav({
+  isOpen,
+  onClose,
+  isLoggedIn,
+}: MobileNavProps) {
   const pathname = usePathname();
 
   if (!isOpen) return null;
@@ -51,6 +56,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           </button>
         </div>
 
+        {/* Navigation Items */}
         <div className="space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -75,16 +81,33 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           })}
         </div>
 
+        {/* Divider */}
         <div className="my-4 h-px bg-white/10" />
 
-        <Link
-          href={loginItem.href}
-          onClick={onClose}
-          className="flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-semibold text-[#2c0202] transition hover:bg-white/90"
-        >
-          <loginItem.icon size={18} />
-          {loginItem.label}
-        </Link>
+        {/* Login / Dashboard */}
+        {isLoggedIn ? (
+          <Link
+            href="/dashboard"
+            onClick={onClose}
+            className={`flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition ${
+              isActive("/dashboard")
+                ? "bg-white text-[#2c0202]"
+                : "bg-white text-[#2c0202] hover:bg-white/90"
+            }`}
+          >
+            <LayoutDashboard size={18} />
+            Dashboard
+          </Link>
+        ) : (
+          <Link
+            href={loginItem.href}
+            onClick={onClose}
+            className="flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-semibold text-[#2c0202] transition hover:bg-white/90"
+          >
+            <loginItem.icon size={18} />
+            {loginItem.label}
+          </Link>
+        )}
       </div>
     </div>
   );

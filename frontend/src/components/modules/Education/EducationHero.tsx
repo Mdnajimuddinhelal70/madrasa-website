@@ -8,7 +8,7 @@ const EducationHero = () => {
         alt="Education at our madrasa"
         fill
         priority
-        className="object-cover"
+        className="object-cover object-top"
       />
 
       {/* Content */}

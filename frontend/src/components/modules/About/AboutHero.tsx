@@ -9,7 +9,7 @@ const AboutHero = () => {
         alt="Madrasa building"
         fill
         priority
-        className="object-cover"
+        className="object-cover object-top"
       />
     </section>
   );

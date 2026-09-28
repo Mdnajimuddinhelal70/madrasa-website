@@ -3,9 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { LayoutDashboard, LogIn } from "lucide-react";
+
 import { loginItem, navItems } from "./nav.config";
 
-export default function DesktopNav() {
+interface DesktopNavProps {
+  isLoggedIn: boolean;
+}
+
+export default function DesktopNav({ isLoggedIn }: DesktopNavProps) {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
@@ -18,6 +24,7 @@ export default function DesktopNav() {
 
   return (
     <div className="hidden items-center gap-2 lg:flex">
+      {/* Main Navigation */}
       <div className="flex items-center rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-md">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -45,13 +52,28 @@ export default function DesktopNav() {
         })}
       </div>
 
-      <Link
-        href={loginItem.href}
-        className="ml-2 flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#2c0202] shadow-lg shadow-black/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90"
-      >
-        <loginItem.icon size={17} />
-        {loginItem.label}
-      </Link>
+      {/* Login / Dashboard */}
+      {isLoggedIn ? (
+        <Link
+          href="/dashboard"
+          className={`ml-2 flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold shadow-lg shadow-black/10 transition-all duration-300 ${
+            isActive("/dashboard")
+              ? "bg-white text-[#2c0202]"
+              : "bg-white text-[#2c0202] hover:-translate-y-0.5 hover:bg-white/90"
+          }`}
+        >
+          <LayoutDashboard size={17} />
+          Dashboard
+        </Link>
+      ) : (
+        <Link
+          href={loginItem.href}
+          className="ml-2 flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#2c0202] shadow-lg shadow-black/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90"
+        >
+          <LogIn size={17} />
+          {loginItem.label}
+        </Link>
+      )}
     </div>
   );
 }
