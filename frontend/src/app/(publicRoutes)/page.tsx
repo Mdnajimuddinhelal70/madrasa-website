@@ -5,13 +5,12 @@ import GraduatesSection from "@/components/modules/home/GraduatesSection";
 import HeroSection from "@/components/modules/home/HeroSection";
 import ManagementSection from "@/components/modules/home/ManagementSection";
 import NoticeSection from "@/components/modules/home/NoticeSection";
-import TeachersPage from "./teachers/page";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <TeachersPage />
+      {/* <TeachersPage /> */}
       <AboutSection />
       <FeaturesSection />
       <ManagementSection />

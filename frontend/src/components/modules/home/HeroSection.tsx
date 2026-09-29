@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import banner from "../../../../public/assets/images/bannerImg/madrasa2.png";
 
 export default function HeroSection() {
   return (
@@ -32,7 +31,7 @@ export default function HeroSection() {
         {/* Right Image */}
         <div className="relative w-full h-[300px] md:h-[400px]">
           <Image
-            src={banner}
+            src="https://res.cloudinary.com/dpgjlcycl/image/upload/v1790445634/Gemini_Generated_Image_czlhdvczlhdvczlh_djsooz.jpg"
             alt="Madrasa"
             fill
             className="object-cover rounded-2xl shadow-lg"
