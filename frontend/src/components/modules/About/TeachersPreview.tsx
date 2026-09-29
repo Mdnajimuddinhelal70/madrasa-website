@@ -55,7 +55,7 @@ const TeachersPreview = async () => {
                         src={teacherImage}
                         alt={teacher.name}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center text-muted-foreground">
