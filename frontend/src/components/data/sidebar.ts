@@ -18,7 +18,7 @@ export const sidebarData = {
       items: [
         {
           title: "All Managers",
-          url: "/dashboard/all-managers",
+          url: "/dashboard/managers",
         },
         {
           title: "Add new Manager",

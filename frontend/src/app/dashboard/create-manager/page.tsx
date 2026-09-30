@@ -1,4 +1,4 @@
-import { CreateManagersForm } from "@/components/modules/Managers/CreateManagersForm";
+import { CreateManagerForm } from "@/components/modules/Managers/CreateManagerForm";
 
 export const metadata = {
   title: "Create Manager | Admin",
@@ -14,7 +14,7 @@ export default function CreateManagerPage() {
         </p>
       </div>
 
-      <CreateManagersForm />
+      <CreateManagerForm />
     </div>
   );
 }

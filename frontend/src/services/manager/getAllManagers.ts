@@ -1,20 +1,29 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
-import { IApiResponse, ITeacher } from "@/types/user.interface";
 import { cookies } from "next/headers";
+
+import { IManager } from "@/types/manager.interface";
+
+export interface IManagerApiResponse {
+  success: boolean;
+  message: string;
+  data: IManager[];
+}
 
 const baseApiUrl = process.env.NEXT_PUBLIC_BASE_API;
 
-export const getAllManagers = async (): Promise<IApiResponse<ITeacher[]>> => {
+export const getAllManagers = async (): Promise<IManagerApiResponse> => {
   const accessToken = (await cookies()).get("accessToken")?.value;
 
   const res = await fetch(`${baseApiUrl}/manager/all`, {
     method: "GET",
-    headers: accessToken ? { Authorization: `Bearer ${accessToken}` } : {},
+    headers: accessToken
+      ? {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      : {},
     next: {
-      tags: ["MANAGER"],
+      tags: ["MANAGERS"],
     },
   });
 
@@ -22,7 +31,7 @@ export const getAllManagers = async (): Promise<IApiResponse<ITeacher[]>> => {
 
   try {
     data = await res.json();
-  } catch (err: any) {
+  } catch {
     throw new Error("Invalid server response");
   }
 

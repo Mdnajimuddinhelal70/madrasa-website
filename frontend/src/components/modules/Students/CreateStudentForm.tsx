@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,35 +12,36 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 import { createStudent } from "@/services/student/createStudent";
+import { studentFormSchema } from "@/validation/student/createStudent.validation";
 
-const studentFormSchema = z.object({
-  name: z.string().min(2, "Student name must be at least 2 characters"),
+// const studentFormSchema = z.object({
+//   name: z.string().min(2, "Student name must be at least 2 characters"),
 
-  fatherName: z.string().optional(),
+//   fatherName: z.string().optional(),
 
-  motherName: z.string().optional(),
+//   motherName: z.string().optional(),
 
-  village: z.string().optional(),
+//   village: z.string().optional(),
 
-  postOffice: z.string().optional(),
+//   postOffice: z.string().optional(),
 
-  thana: z.string().optional(),
+//   thana: z.string().optional(),
 
-  district: z.string().optional(),
+//   district: z.string().optional(),
 
-  phone: z.string().optional(),
+//   phone: z.string().optional(),
 
-  guardianPhone: z.string().optional(),
+//   guardianPhone: z.string().optional(),
 
-  completionYear: z
-    .number()
-    .int("Completion year must be a whole number")
-    .min(1900, "Enter a valid completion year"),
+//   completionYear: z
+//     .number()
+//     .int("Completion year must be a whole number")
+//     .min(1900, "Enter a valid completion year"),
 
-  biography: z.string().optional(),
+//   biography: z.string().optional(),
 
-  picture: z.instanceof(File).optional(),
-});
+//   picture: z.instanceof(File).optional(),
+// });
 
 type CreateStudentFormValues = z.infer<typeof studentFormSchema>;
 export default function CreateStudentForm() {

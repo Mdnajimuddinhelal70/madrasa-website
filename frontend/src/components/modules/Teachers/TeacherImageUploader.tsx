@@ -45,7 +45,12 @@ export const TeacherImageUploader = ({ files, onChange, max = 5 }: Props) => {
               key={i}
               className="relative aspect-square rounded-lg overflow-hidden border"
             >
-              <Image src={src} alt="" fill className="object-cover" />
+              <Image
+                src={src}
+                alt=""
+                fill
+                className="object-cover object-top"
+              />
               <button
                 type="button"
                 onClick={() => removeAt(i)}
