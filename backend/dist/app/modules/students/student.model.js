@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GraduateStudent = void 0;
+exports.Student = void 0;
 const mongoose_1 = require("mongoose");
-const graduateSchema = new mongoose_1.Schema({
+const studentsSchema = new mongoose_1.Schema({
     name: { type: String, required: true, trim: true },
     fatherName: { type: String, trim: true },
     motherName: { type: String, trim: true },
@@ -10,10 +10,17 @@ const graduateSchema = new mongoose_1.Schema({
     postOffice: String,
     thana: String,
     district: String,
-    phone: String,
-    picture: { type: [String], default: [] },
+    phone: {
+        type: String,
+        trim: true,
+    },
+    guardianPhone: {
+        type: String,
+        trim: true,
+    },
+    picture: { type: String, trim: true },
     completionYear: { type: Number, required: true },
     biography: String,
     isActive: { type: Boolean, default: true },
 }, { timestamps: true });
-exports.GraduateStudent = (0, mongoose_1.model)("GraduateStudent", graduateSchema);
+exports.Student = (0, mongoose_1.model)("Student", studentsSchema);

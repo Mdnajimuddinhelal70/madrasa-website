@@ -21,8 +21,8 @@ const moduleRoutes = [
         route: manager_route_1.ManagerRoutes,
     },
     {
-        path: "/graduate",
-        route: student_route_1.GraduateRoutes,
+        path: "/student",
+        route: student_route_1.StudentRoutes,
     },
 ];
 moduleRoutes.forEach((route) => {

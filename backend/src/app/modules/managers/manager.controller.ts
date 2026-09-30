@@ -7,11 +7,13 @@ import { IManager } from "./manager.interface";
 import { ManagerService } from "./manager.service";
 
 const createManager = catchAsync(async (req: Request, res: Response) => {
-  const payload: IManager = {
+  const picture = req.file?.path;
+
+  const managerData = {
     ...req.body,
-    picture: (req.files as Express.Multer.File[]).map((file) => file.path),
+    ...(picture && { picture }),
   };
-  const result = await ManagerService.createManager(payload);
+  const result = await ManagerService.createManager(managerData);
 
   sendResponse(res, {
     success: true,

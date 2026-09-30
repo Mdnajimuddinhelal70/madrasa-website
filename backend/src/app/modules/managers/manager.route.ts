@@ -15,7 +15,7 @@ const router = express.Router();
 router.post(
   "/create-manager",
   checkAuth("admin"),
-  multerUpload.array("files"),
+  multerUpload.single("file"),
   validateRequest(createManagerZodSchema),
   ManagerController.createManager,
 );
@@ -30,7 +30,7 @@ router.get("/manager/:id", ManagerController.getSingleManager);
 router.patch(
   "/update-manager/:id",
   checkAuth("admin"),
-  multerUpload.array("files"),
+  multerUpload.single("file"),
   validateRequest(updateManagerZodSchema),
   ManagerController.updateManager,
 );

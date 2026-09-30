@@ -3,67 +3,82 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GraduateController = void 0;
+exports.StudentController = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const catchAsync_1 = require("../../utils/catchAsync");
 const sendResponse_1 = require("../../utils/sendResponse");
 const student_service_1 = require("./student.service");
-const createGraduate = (0, catchAsync_1.catchAsync)(async (req, res) => {
-    const payload = {
+// const createStudent = catchAsync(async (req: Request, res: Response) => {
+//   const result = await StudentService.createStudent(req.body);
+//   sendResponse(res, {
+//     success: true,
+//     statusCode: httpStatus.CREATED,
+//     message: "Student created successfully",
+//     data: result,
+//   });
+// });
+const createStudent = (0, catchAsync_1.catchAsync)(async (req, res) => {
+    const picture = req.file?.path;
+    const studentData = {
         ...req.body,
-        picture: req.files.map((file) => file.path),
+        ...(picture && { picture }),
     };
-    const result = await student_service_1.GraduateService.createGraduate(payload);
+    const result = await student_service_1.StudentService.createStudent(studentData);
     (0, sendResponse_1.sendResponse)(res, {
         success: true,
         statusCode: http_status_1.default.CREATED,
-        message: "Graduate created successfully",
+        message: "Student created successfully",
         data: result,
     });
 });
-const getAllGraduates = (0, catchAsync_1.catchAsync)(async (req, res) => {
-    const result = await student_service_1.GraduateService.getAllGraduates();
+const getAllStudents = (0, catchAsync_1.catchAsync)(async (req, res) => {
+    const result = await student_service_1.StudentService.getAllStudents();
     (0, sendResponse_1.sendResponse)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Graduates retrieved successfully",
+        message: "Students retrieved successfully",
         data: result,
     });
 });
-const getSingleGraduate = (0, catchAsync_1.catchAsync)(async (req, res) => {
+const getSingleStudent = (0, catchAsync_1.catchAsync)(async (req, res) => {
     const { id } = req.params;
-    const result = await student_service_1.GraduateService.getSingleGraduate(id);
+    const result = await student_service_1.StudentService.getSingleStudent(id);
     (0, sendResponse_1.sendResponse)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Graduate retrieved successfully",
+        message: "Student retrieved successfully",
         data: result,
     });
 });
-const updateGraduate = (0, catchAsync_1.catchAsync)(async (req, res) => {
+const updateStudent = (0, catchAsync_1.catchAsync)(async (req, res) => {
     const { id } = req.params;
-    const result = await student_service_1.GraduateService.updateGraduate(id, req.body);
+    const picture = req.file?.path;
+    const studentData = {
+        ...req.body,
+        ...(picture && { picture }),
+    };
+    const result = await student_service_1.StudentService.updateStudent(id, studentData);
     (0, sendResponse_1.sendResponse)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Graduate updated successfully",
+        message: "Student updated successfully",
         data: result,
     });
 });
-const deleteGraduate = (0, catchAsync_1.catchAsync)(async (req, res) => {
+const deleteStudent = (0, catchAsync_1.catchAsync)(async (req, res) => {
     const { id } = req.params;
-    await student_service_1.GraduateService.deleteGraduate(id);
+    await student_service_1.StudentService.deleteStudent(id);
     (0, sendResponse_1.sendResponse)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: "Graduate deleted successfully",
+        message: "Student deleted successfully",
         data: null,
     });
 });
-exports.GraduateController = {
-    getAllGraduates,
-    getSingleGraduate,
-    updateGraduate,
-    deleteGraduate,
-    createGraduate,
+exports.StudentController = {
+    getAllStudents,
+    getSingleStudent,
+    updateStudent,
+    deleteStudent,
+    createStudent,
 };

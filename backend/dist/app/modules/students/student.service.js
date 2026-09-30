@@ -1,33 +1,34 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GraduateService = void 0;
+exports.StudentService = void 0;
 const student_model_1 = require("./student.model");
-const createGraduate = async (payload) => {
-    const result = await student_model_1.GraduateStudent.create(payload);
+const createStudent = async (payload) => {
+    const result = await student_model_1.Student.create(payload);
     return result;
 };
-const getAllGraduates = async () => {
-    const result = await student_model_1.GraduateStudent.find().sort({ completionYear: -1 });
+const getAllStudents = async () => {
+    const result = await student_model_1.Student.find().sort({ completionYear: -1 });
     return result;
 };
-const getSingleGraduate = async (id) => {
-    const result = await student_model_1.GraduateStudent.findById(id);
+const getSingleStudent = async (id) => {
+    const result = await student_model_1.Student.findById(id);
     return result;
 };
-const updateGraduate = async (id, payload) => {
-    const result = await student_model_1.GraduateStudent.findByIdAndUpdate(id, payload, {
+const updateStudent = async (id, payload) => {
+    const result = await student_model_1.Student.findByIdAndUpdate(id, payload, {
         new: true,
+        runValidators: true,
     });
     return result;
 };
-const deleteGraduate = async (id) => {
-    const result = await student_model_1.GraduateStudent.findByIdAndDelete(id);
+const deleteStudent = async (id) => {
+    const result = await student_model_1.Student.findByIdAndDelete(id);
     return result;
 };
-exports.GraduateService = {
-    getAllGraduates,
-    getSingleGraduate,
-    updateGraduate,
-    deleteGraduate,
-    createGraduate,
+exports.StudentService = {
+    getAllStudents,
+    getSingleStudent,
+    updateStudent,
+    deleteStudent,
+    createStudent,
 };

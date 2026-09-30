@@ -5,7 +5,7 @@ const managerSchema = new Schema<IManager>(
   {
     name: { type: String, required: true, trim: true },
     phone: { type: String, trim: true },
-    picture: { type: [String], default: [] },
+    picture: { type: String },
     description: { type: String, trim: true },
   },
   { timestamps: true },
